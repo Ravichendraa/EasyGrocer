@@ -1,0 +1,32 @@
+.carousel-container {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+  }
+  
+  .carousel-track {
+    display: flex;
+    width: calc(200%); /* Adjust as per the number of items */
+    animation: scroll 20s linear infinite;
+  }
+  
+  .carousel-item {
+    flex: 0 0 auto;
+    width: 200px; /* Adjust the width as per your design */
+    margin-right: 16px; /* Space between items */
+  }
+  
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%); /* Scroll by 50% to cover the duplicated items */
+    }
+  }
+  
+  /* Pause animation on hover */
+  .carousel-container:hover .carousel-track {
+    animation-play-state: paused;
+  }
+  

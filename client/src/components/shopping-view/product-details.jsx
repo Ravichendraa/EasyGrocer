@@ -821,6 +821,7 @@ function ProductDetailsDialog({ open, setOpen, productDetails }) {
             <p className="text-gray-600">
               You have already submitted a review for this product. 
               Each customer can only submit one review per product.
+              Head to your account and reviews to edit the submitted review.
             </p>
             <Button 
               className="w-full mt-2" 

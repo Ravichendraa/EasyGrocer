@@ -7,6 +7,7 @@ import AdminDashboard from "./pages/admin-view/dashboard";
 import AdminProducts from "./pages/admin-view/products";
 import AdminOrders from "./pages/admin-view/orders";
 import AdminFeatures from "./pages/admin-view/features";
+import AdvertisementUpload from "./components/admin-view/AdvertisementUpload"; // Import the AdvertisementUpload component
 import ShoppingLayout from "./components/shopping-view/layout";
 import NotFound from "./pages/not-found";
 import ShoppingHome from "./pages/shopping-view/home";
@@ -23,7 +24,6 @@ import PaypalReturnPage from "./pages/shopping-view/paypal-return";
 import PaymentSuccessPage from "./pages/shopping-view/payment-success";
 import SearchProducts from "./pages/shopping-view/search";
 
-
 function App() {
   const { user, isAuthenticated, isLoading } = useSelector(
     (state) => state.auth
@@ -34,8 +34,6 @@ function App() {
     dispatch(checkAuth());
   }, [dispatch]);
 
-  // if (isLoading) return <Skeleton className="w-[800] bg-black h-[600px]" />;
-  
   if (isLoading)
     return (
       <div className="fixed inset-0 flex items-center justify-center w-screen h-screen bg-black">
@@ -44,7 +42,7 @@ function App() {
           <div className="w-5 h-5 bg-white rounded-full animate-[wave_1.5s_ease-in-out_infinite] [animation-delay:0.2s]"></div>
           <div className="w-5 h-5 bg-white rounded-full animate-[wave_1.5s_ease-in-out_infinite] [animation-delay:0.4s]"></div>
         </div>
-  
+
         <style>
           {`
             @keyframes wave {
@@ -55,9 +53,6 @@ function App() {
         </style>
       </div>
     );
-  
-
-  console.log(isLoading, user);
 
   return (
     <div className="flex flex-col overflow-hidden bg-white">
@@ -94,6 +89,7 @@ function App() {
           <Route path="products" element={<AdminProducts />} />
           <Route path="orders" element={<AdminOrders />} />
           <Route path="features" element={<AdminFeatures />} />
+          <Route path="advertisements" element={<AdvertisementUpload />} /> {/* Add the new route */}
         </Route>
         <Route
           path="/shop"

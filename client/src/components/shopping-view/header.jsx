@@ -46,7 +46,9 @@ const MenuItems = ({ onClose, isInSheet }) => {
         : null;
 
     if (currentFilter) {
+      
       sessionStorage.setItem("filters", JSON.stringify(currentFilter));
+      window.scrollTo(0, 0);
     }
 
     // Handle navigation

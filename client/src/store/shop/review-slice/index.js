@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-
+const backendUrl ="https://easygrocer.onrender.com"
 const initialState = {
   isLoading: false,
   reviews: [],
@@ -13,7 +13,7 @@ export const addReview = createAsyncThunk(
   "/order/addReview",
   async (formdata) => {
     const response = await axios.post(
-      `http://localhost:5000/api/shop/review/add`,
+      `${backendUrl}/api/shop/review/add`,
       formdata
     );
 
@@ -23,7 +23,7 @@ export const addReview = createAsyncThunk(
 
 export const getReviews = createAsyncThunk("/order/getReviews", async (id) => {
   const response = await axios.get(
-    `http://localhost:5000/api/shop/review/${id}`
+    `${backendUrl}/api/shop/review/${id}`
   );
 
   return response.data;
@@ -33,7 +33,7 @@ export const fetchUserReviews = createAsyncThunk(
   '/review/fetchUserReviews',
   async (userId, { rejectWithValue }) => {
     try {
-      const response = await axios.get(`http://localhost:5000/api/shop/review/user/${userId}`);
+      const response = await axios.get(`${backendUrl}/api/shop/review/user/${userId}`);
       return response.data.data;
     } catch (error) {
       if (!error.response) {
@@ -48,7 +48,7 @@ export const updateReview = createAsyncThunk(
   '/review/updateReview',
   async (review, { rejectWithValue }) => {
     try {
-      const response = await axios.put(`http://localhost:5000/api/shop/review/${review._id}`, review);
+      const response = await axios.put(`${backendUrl}/api/shop/review/${review._id}`, review);
       return response.data.data;
     } catch (error) {
       if (!error.response) {

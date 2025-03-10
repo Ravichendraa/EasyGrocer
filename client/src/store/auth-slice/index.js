@@ -1,6 +1,9 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
+const backendUrl ="https://easygrocer.onrender.com"
+console.log("Backend URL:", backendUrl);
+
 const initialState = {
   isAuthenticated: false,
   isLoading: true,
@@ -9,10 +12,9 @@ const initialState = {
 
 export const registerUser = createAsyncThunk(
   "/auth/register",
-
   async (formData) => {
     const response = await axios.post(
-      `http://localhost:5000/api/auth/register`,
+      `${backendUrl}/api/auth/register`,
       formData,
       {
         withCredentials: true,
@@ -25,10 +27,9 @@ export const registerUser = createAsyncThunk(
 
 export const loginUser = createAsyncThunk(
   "/auth/login",
-
   async (formData) => {
     const response = await axios.post(
-      `http://localhost:5000/api/auth/login`,
+      `${backendUrl}/api/auth/login`,
       formData,
       {
         withCredentials: true,
@@ -41,10 +42,9 @@ export const loginUser = createAsyncThunk(
 
 export const logoutUser = createAsyncThunk(
   "/auth/logout",
-
   async () => {
     const response = await axios.post(
-      `http://localhost:5000/api/auth/logout`,
+      `${backendUrl}/api/auth/logout`,
       {},
       {
         withCredentials: true,
@@ -57,10 +57,9 @@ export const logoutUser = createAsyncThunk(
 
 export const checkAuth = createAsyncThunk(
   "/auth/checkauth",
-
   async () => {
     const response = await axios.get(
-      `http://localhost:5000/api/auth/check-auth`,
+      `${backendUrl}/api/auth/check-auth`,
       {
         withCredentials: true,
         headers: {
@@ -78,7 +77,7 @@ const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    setUser: (state, action) => { },
+    setUser: (state, action) => {},
   },
   extraReducers: (builder) => {
     builder

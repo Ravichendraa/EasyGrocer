@@ -4,6 +4,7 @@ import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 import axios from "axios";
 import { addProductFormElements } from "@/config"; // Import the config file
+const backendUrl ="https://easygrocer.onrender.com"
 
 function AdvertisementUpload() {
   const [videoFile, setVideoFile] = useState(null);
@@ -30,7 +31,7 @@ function AdvertisementUpload() {
 
   const fetchAdvertisements = async () => {
     try {
-      const response = await axios.get(`http://localhost:5000/api/admin/advertisements`);
+      const response = await axios.get(`${backendUrl}/api/admin/advertisements`);
       setAdvertisements(response.data.data);
     } catch (error) {
       console.error("Error fetching advertisements:", error);
@@ -56,7 +57,7 @@ function AdvertisementUpload() {
 
     try {
       const response = await axios.post(
-        `http://localhost:5000/api/admin/advertisements/upload`,
+        `${backendUrl}/api/admin/advertisements/upload`,
         formData
       );
       if (response.data.success) {
@@ -92,7 +93,7 @@ function AdvertisementUpload() {
     setIsLoading(true);
     try {
       const response = await axios.put(
-        `http://localhost:5000/api/admin/advertisements/${currentEditedId}`,
+        `${backendUrl}/api/admin/advertisements/${currentEditedId}`,
         { title, brand }
       );
       if (response.data.success) {

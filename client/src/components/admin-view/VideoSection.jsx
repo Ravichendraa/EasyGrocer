@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { VolumeX, Volume2 } from "lucide-react";
+const backendUrl ="https://easygrocer.onrender.com"
 
 function VideoSection({ uniqueKey, numAds }) {
   const navigate = useNavigate();
@@ -12,7 +13,7 @@ function VideoSection({ uniqueKey, numAds }) {
   useEffect(() => {
     const fetchAdvertisements = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/admin/advertisements`);
+        const response = await axios.get(`${backendUrl}/api/admin/advertisements`);
         const ads = response.data.data;
         const uniqueAds = ads.sort(() => 0.5 - Math.random()).slice(0, numAds); // Randomly select unique ads
         setAdvertisements(uniqueAds);

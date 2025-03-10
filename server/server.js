@@ -28,9 +28,10 @@ mongoose
 
 const app = express();
 const PORT = process.env.PORT || 5000;
+const frontendUrl = process.env.FRONTEND_URL;
 
 app.use(cors({
-    origin: "http://localhost:5173",
+    origin: frontendUrl,
     methods: ["GET", "POST", "DELETE", "PUT"],
     allowedHeaders: [
       "Content-Type",
@@ -45,6 +46,9 @@ app.use(cors({
 app.use(cookieParser());
 app.use(express.json());
 app.use(morgan("dev"));
+app.get("/", (req, res) => {
+  res.send("I am active");
+});
 app.use("/api/auth", authRouter);
 app.use("/api/admin/products", adminProductsRouter);
 app.use("/api/admin/orders", adminOrderRouter);
